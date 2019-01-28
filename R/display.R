@@ -28,7 +28,7 @@ display <- function(
     colnames(results) <- c('Low', 'High', 'Diff', 'Effect', 'Lower 0.95', 'Upper 0.95')
     results <- data.frame(results, p = pval)
     if (!is.null(effect)) names(results)[grep('Effect', names(results))]= effect
-    if(!diff)
+    if(!show_diff)
       results <- results[,-c(1:3)]
   }else{
 
