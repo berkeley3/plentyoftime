@@ -38,7 +38,7 @@ display <- function(
                            Lower.0.95= round(summary.model$ci.lower, digits),
                            Upper.0.95 = round(summary.model$ci.upper, digits),
                            p = round(summary.model$prob,digits))
-      results$p <- ifelse(results$p < 0.001, '< 0.001', round(results$p, digits))
+      results$p <- ifelse(results$p < 0.001, '< 0.001', results$p)
 
     }else{
       results = data.frame(Low = NA, High = NA, Diff = NA,
@@ -46,7 +46,7 @@ display <- function(
                            Lower.0.95= round(summary.model$ci.lower, digits),
                            Upper.0.95 = round(summary.model$ci.upper, digits),
                            p = round(summary.model$prob,digits))
-      results$p <- ifelse(results$p < 0.001, '< 0.001', round(results$p, digits))
+      results$p <- ifelse(results$p < 0.001, '< 0.001', results$p)
 
     }
 
