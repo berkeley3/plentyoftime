@@ -22,11 +22,12 @@ display <- function(
     idx <- seq(1, n, by = 2)
     m <- matrix(summary.model, nrow = n)
     pval <- 2*pnorm(abs(m[idx, 4]/m[idx, 5]), lower.tail = F)
-    pval <- ifelse(pval < 0.001, '< 0.001', round(pval, digits))
+#    pval <- ifelse(pval < 0.001, '< 0.001', round(pval, digits))
     results <- round(matrix(m[idx+1, c(1:4,6:7)], nrow = n/2),digits)
     rownames(results) <- rownames(summary.model)[idx]
     colnames(results) <- c('Low', 'High', 'Diff', 'Effect', 'Lower 0.95', 'Upper 0.95')
     results <- data.frame(results, p = pval)
+    results$p <- ifelse(results$p < 0.001, '< 0.001', round(results$p,digits))
     if (!is.null(effect)) names(results)[grep('Effect', names(results))]= effect
     if(!show_diff)
       results <- results[,-c(1:3)]
@@ -38,7 +39,7 @@ display <- function(
                            Lower.0.95= round(summary.model$ci.lower, digits),
                            Upper.0.95 = round(summary.model$ci.upper, digits),
                            p = round(summary.model$prob,digits))
-      results$p <- ifelse(results$p < 0.001, '< 0.001', results$p)
+      results$p <- ifelse(results$p < 0.001, '< 0.001', round(results$p, digits))
 
     }else{
       results = data.frame(Low = NA, High = NA, Diff = NA,
@@ -46,7 +47,7 @@ display <- function(
                            Lower.0.95= round(summary.model$ci.lower, digits),
                            Upper.0.95 = round(summary.model$ci.upper, digits),
                            p = round(summary.model$prob,digits))
-      results$p <- ifelse(results$p < 0.001, '< 0.001', results$p)
+      results$p <- ifelse(results$p < 0.001, '< 0.001', round(results$p, digits))
 
     }
 
