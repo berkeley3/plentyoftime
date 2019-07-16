@@ -22,7 +22,6 @@ display <- function(
     idx <- seq(1, n, by = 2)
     m <- matrix(summary.model, nrow = n)
     pval <- 2*pnorm(abs(m[idx, 4]/m[idx, 5]), lower.tail = F)
-#    pval <- ifelse(pval < 0.001, '< 0.001', round(pval, digits))
     results <- round(matrix(m[idx+1, c(1:4,6:7)], nrow = n/2),digits)
     rownames(results) <- rownames(summary.model)[idx]
     colnames(results) <- c('Low', 'High', 'Diff', 'Effect', 'Lower 0.95', 'Upper 0.95')
