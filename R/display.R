@@ -6,7 +6,7 @@
 #' @param effect Character indicating which kind of effect (OR or HR). Default is NULL, indicating a column named Effect
 #' @param firth Logical value indicating whether the summary is applied to logistf model (firth = T) or a lrm/cph model (firth = F). Default is F
 #'
-#' @return A dataframe to be passed to kable
+#' @return A dataframe to pass to kable
 #'
 #' @examples
 #'
