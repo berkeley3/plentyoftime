@@ -16,14 +16,17 @@
 
 
 my_lrm <- function(df, var, event, confounders=NULL, show_diff = FALSE, 
-                   show_confounders = FALSE, effect = 'OR'){
+                   show_confounders = FALSE, firth = FALSE, effect = 'OR'){
   options(datadist='dd')
   options(warn=-1)
   
   df2 <- df %>%dplyr::select(var, event, confounders)
   
-  dd <<- rms::datadist(df2)
   
+  if(!firth){
+    
+   dd <<- rms::datadist(df2)
+    
   if(is.null(confounders)){
     mod <- rms::lrm(as.formula(paste0(event ,' ~', var)), 
                data = df2, x = T, y = T)}else{
@@ -37,6 +40,25 @@ my_lrm <- function(df, var, event, confounders=NULL, show_diff = FALSE,
     resout <- resout[idx,]
     resout
   }
-  
+  }else{
+    
+    
+    df2 = na.omit(df2)
+    if(is.null(confounders)){
+      mod <- logistf(as.formula(paste0(event ,' ~', var)),
+                    data = df2)}else{
+                      mod <- coxphf(as.formula(paste0(event,' ~', var, '+', paste0(confounders,collapse = '+'))),
+                                    data = df2)
+                    }
+    
+    if(show_confounders) {display(mod, show_diff= show_diff, effect = effect, firth = T)}else{
+      resout <- display(mod, show_diff= show_diff, effect = effect, firth = T)
+      idx <- grep(var, rownames(resout))
+      resout <- resout[idx,]
+      resout
+    }
+    
+    
+  }
   
 }
