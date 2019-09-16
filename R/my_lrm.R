@@ -47,7 +47,7 @@ my_lrm <- function(df, var, event, confounders=NULL, show_diff = FALSE,
     if(is.null(confounders)){
       mod <- logistf(as.formula(paste0(event ,' ~', var)),
                     data = df2)}else{
-                      mod <- coxphf(as.formula(paste0(event,' ~', var, '+', paste0(confounders,collapse = '+'))),
+                      mod <- logistf(as.formula(paste0(event,' ~', var, '+', paste0(confounders,collapse = '+'))),
                                     data = df2)
                     }
     
