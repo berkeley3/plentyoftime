@@ -18,7 +18,7 @@ my_table1 <- function(varnames, factorVarnames, strata, df, missing = FALSE){
   categor_o <- tab_o$CatTable
   cont_o <- tab_o$ContTable
 
-  n <- nrow(unique(df[,strata]))
+  n <- length(unique(df[,strata]))
 
   cont[[n+1]]=cont_o$Overall
   categor[[n+1]]=categor_o$Overall
