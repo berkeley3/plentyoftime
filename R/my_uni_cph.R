@@ -30,7 +30,7 @@ my_uni_cph <- function(df, var, time_to_event, event, confounders=NULL, show_dif
 
   if(is.null(confounders)){
     df2 <- df %>%dplyr::select(var, time_to_event, event)}else{
-      df2 <- df %>%select(var, time_to_event, event, confounders)
+      df2 <- df %>% dplyr::select(var, time_to_event, event, confounders)
     }
 
   if(!firth){
