@@ -35,8 +35,8 @@ display <- function(
     if(!show_diff){
 
       results = data.frame(Effect = round(as.numeric(exp(summary.model$coefficients)),digits),
-                           Lower.0.95= round(summary.model$ci.lower, digits),
-                           Upper.0.95 = round(summary.model$ci.upper, digits),
+                           Lower.0.95= round(exp(summary.model$ci.lower), digits),
+                           Upper.0.95 = round(exp(summary.model$ci.upper), digits),
                            p = round(summary.model$prob,digits))
       results$p <- ifelse(results$p < 0.001, '< 0.001', results$p)
 
