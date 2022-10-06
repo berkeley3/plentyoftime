@@ -14,7 +14,7 @@
 #'
 
 
-display <- function(
+display2 <- function(
   summary.model, digits = 3, show_diff = FALSE, effect=NULL, firth = FALSE
 ){
   if(!firth){
