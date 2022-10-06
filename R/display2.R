@@ -30,7 +30,7 @@ display2 <- function(
     results$p <- ifelse(results$p < 0.001, '< 0.001', round(results$p,digits))
     if (!is.null(effect)) names(results)[grep('Effect', names(results))]= effect
     if(!show_diff)
-      results <- results[,-3]
+      results <- results[,-1]
   }else{
 
     if(!show_diff){
